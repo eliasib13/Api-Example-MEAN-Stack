@@ -18,12 +18,14 @@ function getFavorito(req, res){
         if(err) {
             res.status(500).send({message: 'Error al devolver el favorito'});
         }
-
-        if (!favorito) {
-            res.status(404).send({message: 'No se ha encontrado el favorito'});
+        else {
+            if (!favorito) {
+                res.status(404).send({message: 'No se ha encontrado el favorito'});
+            }
+            else {
+                res.status(200).send({favorito});
+            }
         }
-        
-        res.status(200).send({favorito});
     });
 }
 
@@ -32,12 +34,14 @@ function getFavoritos(req, res){
         if (err) {
             res.status(500).send({message: 'Error al devolver los favoritos'});
         }
-
-        if (!favoritos) {
-            res.status(404).send({message: 'No se han encontrado favoritos'});
+        else {
+            if (!favoritos) {
+                res.status(404).send({message: 'No se han encontrado favoritos'});
+            }
+            else {
+                res.status(200).send({favoritos});
+            }
         }
-        
-        res.status(200).send({favoritos});
     });
 }
 
@@ -53,8 +57,9 @@ function saveFavorito(req, res){
         if(err) {
             res.status(500).send({message: 'Error al guardar el favorito'});
         }
-
-        res.status(200).send({favorito: favoritoStored});
+        else {
+            res.status(200).send({favorito: favoritoStored});
+        }
     });
 }
 
@@ -66,8 +71,9 @@ function updateFavorito(req, res){
         if(err) {
             res.status(500).send({message: 'Error al actualizar el favorito'});
         }
-
-        res.status(200).send({favorito: favoritoUpdated});
+        else {
+            res.status(200).send({favorito: favoritoUpdated});
+        }
     });
 }
 
@@ -78,12 +84,14 @@ function deleteFavorito(req, res){
         if(err) {
             res.status(500).send({message: 'Error al eliminar el favorito'});
         }
-
-        if (!favoritoRemoved) {
-            res.status(404).send({message: 'No se ha encontrado el favorito'});
+        else {
+            if (!favoritoRemoved) {
+                res.status(404).send({message: 'No se ha encontrado el favorito'});
+            }
+            else {
+                res.status(200).send({message: 'Se ha eliminado el favorito'});
+            }
         }
-
-        res.status(200).send({message: 'Se ha eliminado el favorito'});
     });
 }
 
